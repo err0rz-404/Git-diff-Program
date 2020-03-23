@@ -1,0 +1,17 @@
+C:\Users\thomas\source\repos\Git diff\bin\Debug\netcoreapp3.1\Git diff.exe
+C:\Users\thomas\source\repos\Git diff\bin\Debug\netcoreapp3.1\Git diff.deps.json
+C:\Users\thomas\source\repos\Git diff\bin\Debug\netcoreapp3.1\Git diff.runtimeconfig.json
+C:\Users\thomas\source\repos\Git diff\bin\Debug\netcoreapp3.1\Git diff.runtimeconfig.dev.json
+C:\Users\thomas\source\repos\Git diff\bin\Debug\netcoreapp3.1\Git diff.dll
+C:\Users\thomas\source\repos\Git diff\bin\Debug\netcoreapp3.1\Git diff.pdb
+C:\Users\thomas\source\repos\Git diff\obj\Debug\netcoreapp3.1\Git diff.csprojAssemblyReference.cache
+C:\Users\thomas\source\repos\Git diff\obj\Debug\netcoreapp3.1\Git diff.AssemblyInfoInputs.cache
+C:\Users\thomas\source\repos\Git diff\obj\Debug\netcoreapp3.1\Git diff.AssemblyInfo.cs
+C:\Users\thomas\source\repos\Git diff\obj\Debug\netcoreapp3.1\Git diff.dll
+C:\Users\thomas\source\repos\Git diff\obj\Debug\netcoreapp3.1\Git diff.pdb
+C:\Users\thomas\source\repos\Git diff\bin\Debug\netcoreapp3.1\gits\GitRepositories_1a.txt
+C:\Users\thomas\source\repos\Git diff\bin\Debug\netcoreapp3.1\gits\GitRepositories_1b.txt
+C:\Users\thomas\source\repos\Git diff\bin\Debug\netcoreapp3.1\gits\GitRepositories_2a.txt
+C:\Users\thomas\source\repos\Git diff\bin\Debug\netcoreapp3.1\gits\GitRepositories_2b.txt
+C:\Users\thomas\source\repos\Git diff\bin\Debug\netcoreapp3.1\gits\GitRepositories_3a.txt
+C:\Users\thomas\source\repos\Git diff\bin\Debug\netcoreapp3.1\gits\GitRepositories_3b.txt
