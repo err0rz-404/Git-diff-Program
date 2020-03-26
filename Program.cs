@@ -11,18 +11,34 @@ namespace Git_diff
         // a variable for the ability to have commands
         public static string triedcommand = "";
         // a variable for the repositorie that they want to check if they are the same
-        public static int git;
+        public static int git1;
+        public static int git2;
         // two classes for an array of the files
         public static string[] file1;
 
         public static string[] file2;
+        public static string[] filePaths;
     }
     // class program is where all the main code is
     class Program
     {
+        static void direct() { 
+            int i = 0; 
+            while (i < command.filePaths.Length)
+            {
+                Console.WriteLine(i + " " + command.filePaths[i]);
+                i++;
+            }
+        }
         // static void main asks the user to select a file this will be looped until a valid file is selected
         static void Main(string[] args)
         {
+            
+            Console.WriteLine("here is a full list of files");
+            command.filePaths = Directory.GetFiles(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"gits\"), "*.txt", SearchOption.AllDirectories);
+            Console.WriteLine(command.filePaths.Length);
+            direct();
+            Console.WriteLine("use git diff and the number of 2 files to pick which one you would like to use");
             // while command.triedcommand is not equal to any command loop
             while (command.triedcommand == "") { 
             Console.Write(">");
@@ -50,7 +66,7 @@ namespace Git_diff
                 command.triedcommand = "";
             }
             // if not help and is smaller than 8 then make it the alphabet
-            if (command.triedcommand.Length< 4 || command.triedcommand.Length < 8)
+            if (command.triedcommand.Length < 8)
             {
                 command.triedcommand = "abcdefghijklmnopqrstuvwxyz";
             }
@@ -58,17 +74,27 @@ namespace Git_diff
             if (command.triedcommand.Substring(0, 8) == "git diff")
             {
                 // quick check to see if a valid number is selected
-                bool check;
-                check = int.TryParse(command.triedcommand.Substring(8, command.triedcommand.Length - 8), out command.git);
+                bool check1;
+                bool check2;
+                // create a string that gets the last values of the text
+                string input = (command.triedcommand.Substring(command.triedcommand.Length - 4));
+                // strip that line down to have no spaces
+                input = input.Replace(" ", String.Empty);
+                // create a char array of the values to split it and make it a single value
+                char[]  values = input.ToCharArray();
+                // error check to see if numbers
+                check1 = int.TryParse(values[0].ToString(), out command.git1);
+                check2 = int.TryParse(values[1].ToString(), out command.git2);
                 // if it is a valid number then load in the right repos
-                if (check && command.git <4 && command.git > 0) { 
-                Console.WriteLine(command.git);
+                if (check1 && check2 && (command.git1 <command.filePaths.Length && command.git1 >= 0) && (command.git2 < command.filePaths.Length && command.git2>=0)) { 
+                Console.WriteLine(command.git1);
                     load();
                 }
                 // else tell them its invalid and re loop
                 else
                 {
-                    Console.WriteLine("> please pick a valid git repo the ones avalible are 1, 2 or 3");
+                    Console.WriteLine("> please pick a valid git repo the ones avalible");
+                    direct();
                     command.triedcommand = "";
                 }
             }
@@ -83,29 +109,15 @@ namespace Git_diff
         static void load()
         {
             int count = 0;
-            string path = "";
+            string path1 = "";
             string path2 = "";
             string line1;
             string line2;
-            //switch case for which repo they want to use
-            switch (command.git)
-            {
 
-                case 1:
-                    // get location of txt file at the location of where this text file is saved
-                    path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"gits\GitRepositories_1a.txt");
-                    path2 = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"gits\GitRepositories_1b.txt");
-                    break;
-                case 2:
-                    path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"gits\GitRepositories_2a.txt");
-                    path2 = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"gits\GitRepositories_2b.txt");
-                    break;
-                case 3:
-                    path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"gits\GitRepositories_3a.txt");
-                    path2 = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"gits\GitRepositories_3b.txt");
-                    break;
-            }
-            StreamReader file1 = new StreamReader(path);
+            //switch case for which repo they want to use
+            path1 = command.filePaths[command.git1];
+            path2 = command.filePaths[command.git2];
+            StreamReader file1 = new StreamReader(path1);
             StreamReader file2 = new StreamReader(path2);
             // add them to the valid arrays
             while(( line1 = file1.ReadLine()) != null && (line2 = file2.ReadLine()) !=null)
@@ -122,11 +134,13 @@ namespace Git_diff
             bool isEqual = Enumerable.SequenceEqual(command.file1, command.file2);
             if (isEqual)
             {
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("The files are the same");
             }
             //else tell them it is not the same 
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("The files are NOT the same");
             }
         }
